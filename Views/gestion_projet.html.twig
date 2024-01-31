@@ -1,0 +1,91 @@
+{% extends "menu.html.twig" %}
+{% block section %}
+	<div class="container mt-5">
+		<h2>Gérer le Projet</h2>
+
+		<!-- Formulaire de Modification de Projet -->
+		<form action="index.php" method="post">
+			{# <div class="form-group">
+				<label for="modifyProjectId">ID du Projet à Modifier :</label>
+				<input type="text" class="form-control" id="modifyProjectId" placeholder="Entrer l'ID du projet" required>
+				<input type="hidden" name="Id_tags" value="{{projet.idProjet}}">
+			</div> #}
+
+			<div class="form-group">
+				<label for="modifyProjectId">ID du Projet à Modifier :</label>
+				<select class="form-control" id="modifyProjectId" name="modifyProjectId" required>
+					{% for projet in projets %}
+						<option value="{{ projet.idProjet() }}">{{ projet.titreProjet() }}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="modifyProjectTitle">Titre du Projet Modifié :</label>
+				<input type="text" class="form-control" id="modifyProjectTitle" name="modifyProjectTitle" placeholder="Entrer le titre du projet modifié">
+			</div>
+
+			<div class="form-group">
+				<label for="modifyProjectContext">Contexte du Projet Modifié :</label>
+				<select class="form-control" id="modifyProjectContext" name="modifyProjectContext" required>
+					{% for contexte in contextes %}
+						<option value="{{ contexte.idContexte() }}">{{ contexte.semestre() }}-{{ contexte.identifiant() }}-{{ contexte.intitule() }}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="modifyProjectCategorie">Categorie du Projet :</label>
+				<select class="form-control" id="modifyProjectCategorie" name="modifyProjectCategorie" required>
+					{% for categorie in categories %}
+						<option value="{{ categorie.Id_categorie() }}">{{ categorie.intitule() }}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+
+			<div class="form-group">
+				<label for="modifyProjectTags">Tags du Projet Modifié :</label>
+				<select class="form-control" id="modifyProjectTags" name="modifyProjectTags" required>
+					{% for tags in tags %}
+						<option value="{{ tags.idTag() }}">{{ tags.intitule() }}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+			{# Champ pour télécharger la photo du projet #}
+			{# <div class="form-group">
+							<label for="projectPhoto">Photo du Projet :</label>
+							<input type="file" class="form-control" id="projectPhoto" name="projectPhoto" accept="image/png, image/jpeg">
+							<input type="hidden" id="projectPhotoHidden" name="MAXFILESIZE" value="10000"/>
+			
+						</div> #}
+
+			<div class="form-group">
+				<label for="modifyProjectCollaborators">Collaborateurs Modifiés :</label>
+				<select class="form-control" id="modifyProjectCollaborators" name="modifyProjectCollaborators" required>
+					{% for collaborateur in collaborateurs %}
+						<option value="{{ collaborateur.idIUT() }}">{{ collaborateur.nom() }}-{{ collaborateur.prenom() }}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="modifyProjectDescription">Description du Projet Modifiée :</label>
+				<textarea class="form-control" id="modifyProjectDescription" name="modifyProjectDescription" rows="5" placeholder="Entrer la description du projet modifiée"></textarea>
+			</div>
+
+			<div class="form-group">
+				<label for="modifyDemoLink">Lien de Démo Modifié :</label>
+				<input type="url" class="form-control" id="modifyDemoLink" name="modifyDemoLink" placeholder="Entrer le lien de démo modifié">
+			</div>
+
+			<div class="form-group">
+				<label for="modifySourceLink">Lien Source Modifié :</label>
+				<input type="url" class="form-control" id="modifySourceLink" name="modifySourceLink"  placeholder="Entrer le lien source modifié">
+			</div>
+
+			<button type="submit" class="btn btn-primary" name="modifier" value="modifier">Modifier le Projet</button>
+		</form>
+	</div>
+{% endblock %}

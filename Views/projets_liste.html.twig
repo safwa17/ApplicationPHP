@@ -1,0 +1,32 @@
+{% extends "index.html.twig" %}
+
+{% block section %}
+		<table class="table table-hover table-sm">
+			<thead>
+				<tr>
+					<th>Titre</th>
+					<th>Description</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for projet in projets %}
+					<tr>
+						<td>{{ projet.titreProjet() }}</td>
+						<td>{{ projet.descriptionProjet() }}</td>
+						<td>
+						<form action="index.php" method="get">
+							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+								<button class="btn btn-dark me-md-2" type="submit" name="action" value="details">Voir plus</button>
+								<input type="hidden" name="idprojet" value="{{projet.idProjet}}">
+								<input type="hidden" name="Id_contexte" value="{{projet.contexteProjet}}">
+								<input type="hidden" name="Id_categorie" value="{{projet.categorieProjet}}">
+								<input type="hidden" name="Id_tags" value="{{projet.tagsProjet}}">
+							</div>
+						</form>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+{% endblock %}

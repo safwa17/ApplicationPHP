@@ -1,0 +1,16 @@
+{% extends "menu.html.twig" %}
+{% block section %}
+	<div class="container mt-5">
+		<h2>Ajouter une SAE ou Ressources</h2>
+
+		<form action="index.php" method="get">
+			<div class="form-group">
+				<label for="contexteIdentifiant">Identifiant du contexte:</label>
+				<input type="text" class="form-control" id="contexteIdentifiant" placeholder="Entrez une SAE ou Ressource" required>
+			</div>
+
+			<a href="?action=valider_contexte" type="submit" class="btn btn-primary">Ajouter contexte</a>
+		</form>
+	</div>
+    {# sae ou ressources = identifiant du contexte #}
+{% endblock %}

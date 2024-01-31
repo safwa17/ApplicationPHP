@@ -1,0 +1,31 @@
+{% extends "menu.html.twig" %}
+
+{% block section %}
+	{% if acces == "oui" %}
+		<div style ="background-image: url("backgroundaccueil.png"); style="position: relative;"">
+			<div>
+				<h1>Bonjour{{membre.prenom}}</h1>
+				<p>Lorem ipsum dolor sit amet consectetur. Commodo gravida blandit duis egestas curabitur. Amet ultricies tincidunt sit .</p>
+				<form action="index.php" method="get">
+					<button type="submit" name="action" value="mespace">
+						Mon Espace
+						<input type="hidden" name="idIUT" value="{{ idIUT }}">
+					</button>
+				</form>
+			</div>
+		</div>
+	{% else %}
+		<div style="position: relative;">
+			<div style="position: absolute; z-index: 1;">
+				<h1>Bonjour</h1>
+				<p>Lorem ipsum dolor sit amet consectetur. Commodo gravida blandit duis egestas curabitur. Amet ultricies tincidunt sit .</p>
+				<button>
+					<a href="?action=login">Se connecter/S'inscrire</a>
+				</button>
+			</div>
+		</div>
+	{% endif %}
+
+{% endblock %}
+
+

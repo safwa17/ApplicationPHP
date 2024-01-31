@@ -1,0 +1,74 @@
+{% extends "menu.html.twig" %}
+{% block section %}
+	<div class="container mt-5">
+		<h2>Ajouter un projet</h2>
+
+		<form action="index.php" method="post" enctype="multipart/form-data">
+			<div class="form-group">
+				<label for="projectTitle">Titre du Projet :</label>
+				<input type="text" class="form-control" id="projectTitle" name="projectTitle" placeholder="Entrer le titre du projet" required>
+			</div>
+
+			<div class="form-group">
+				<label for="projectContext">Contexte du Projet :</label>
+				<select class="form-control" id="projectContext" name="projectContext" required>
+					{% for contexte in contextes %}
+						<option value="{{ contexte.idContexte() }}">{{ contexte.semestre() }}-{{ contexte.identifiant() }}-{{ contexte.intitule() }}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="projectCategorie">Categorie du Projet :</label>
+				<select class="form-control" id="projectCategorie" name="projectCategorie" required>
+					{% for categorie in categories %}
+						<option value="{{ categorie.Id_categorie() }}">{{ categorie.intitule() }}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="projectTags">Tags du Projet :</label>
+				<select class="form-control" id="projectTags" name="projectTags" required>
+					{% for tags in tags %}
+						<option value="{{ tags.idTag() }}">{{ tags.intitule() }}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+			{# Champ pour télécharger la photo du projet #}
+			<div class="form-group">
+				<label for="projectPhoto">Photo du Projet :</label>
+				<input type="file" class="form-control" id="projectPhoto" name="projectPhoto" accept="image/png, image/jpeg">
+				<input type="hidden" id="projectPhotoHidden" name="MAXFILESIZE" value="10000"/>
+
+			</div>
+
+			<div class="form-group">
+				<label for="projectCollaborators">Collaborateurs :</label>
+				<select class="form-control" id="projectCollaborators" name="projectCollaborators" required>
+					{% for collaborateur in collaborateurs %}
+						<option value="{{ collaborateur.idIUT() }}">{{ collaborateur.nom() }}-{{ collaborateur.prenom() }}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="projectDescription">Description du Projet :</label>
+				<textarea class="form-control" id="projectDescription" name="projectDescription" rows="5" placeholder="Entrer la description du projet" required></textarea>
+			</div>
+
+			<div class="form-group">
+				<label for="demoLink">Lien de Démo :</label>
+				<input type="url" class="form-control" id="demoLink" name="demoLink" placeholder="Entrer le lien de démo">
+			</div>
+
+			<div class="form-group">
+				<label for="sourceLink">Lien Source :</label>
+				<input type="url" class="form-control" id="sourceLink" name="sourceLink" placeholder="Entrer le lien source">
+			</div>
+
+			<button name="valider_ajout" name="upload" value="valider_ajout" type="submit" class="btn btn-primary">Ajouter le Projet</button>
+		</form>
+	</div>
+{% endblock %}

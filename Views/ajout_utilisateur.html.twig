@@ -1,0 +1,47 @@
+{% extends "menu.html.twig" %}
+{% block section %}
+	<div class="container mt-5">
+		<h2>Ajouter un utilisateur</h2>
+		<form method="post" action="?action=ajout_uti" class="well">
+			<div class="row mb-4">
+				<div class="col">
+					<div data-mdb-input-init class="form-outline">
+						<input type="text" id="prenom" name="prenom" class="form-control"/>
+						<label class="form-label" for="form3Example1">Prénom</label>
+					</div>
+				</div>
+				<div class="col">
+					<div data-mdb-input-init class="form-outline">
+						<input type="text" id="nom" name="nom" class="form-control"/>
+						<label class="form-label" for="form3Example2">Nom</label>
+					</div>
+				</div>
+				<div class="col">
+					<div data-mdb-input-init class="form-outline">
+						<input type="text" id="idiut" name="idiut" class="form-control"/>
+						<label class="form-label" for="form3Example2">Id IUT</label>
+					</div>
+				</div>
+			</div>
+			{# check button pour definir si l'utilisateur est admin #}
+			<div class="form-check form-switch">
+				<input class="form-check-input" name="admin" value="1" type="checkbox" id="flexSwitchCheckDefault">
+				<label class="form-check-label" for="flexSwitchCheckDefault">Etes-vous admin ?
+				</label>
+			</div>
+
+			<!-- Email input -->
+			<div data-mdb-input-init class="form-outline mb-4">
+				<input type="text" id="mail" name="mail" class="form-control"/>
+				<label class="form-label" for="form3Example3">Email</label>
+			</div>
+
+			<!-- Password input -->
+			<div data-mdb-input-init class="form-outline mb-4">
+				<input type="password" id="pssword" name="pssword" class="form-control"/>
+				<label class="form-label" for="form3Example4">Mot de passe</label>
+			</div>
+			<button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4">S'inscrire</button>
+		</form>
+	</div>
+{% endblock %}

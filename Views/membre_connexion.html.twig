@@ -1,0 +1,30 @@
+
+{% extends "menu.html.twig" %}
+
+{% block section %}
+<form method="post" action="index.php" class="well">
+  <!-- Email input -->
+  <div data-mdb-input-init class="form-outline mb-4">
+    <input type="email" id="login" class="form-control" name="login" placeholder="nom.etudiant@etu.iut-tlse3.fr" />
+    <label class="form-label" for="login">Identifiant</label>
+  </div>
+
+  <!-- Password input -->
+  <div data-mdb-input-init class="form-outline mb-4">
+    <input type="password" id="passwd" class="form-control" name="passwd"/>
+    <label class="form-label" for="passwd">Mot de passe</label>
+  </div>
+{# 
+  <div class="row mb-4">
+    <div class="col">
+      <a href="#!">Mot de passe oublié ?</a>
+    </div>
+  </div> #}
+
+  <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4" name="connexion" value="connexion">Se connecter</button>
+
+  <div class="text-center">
+    <p>Pas encore membre ? <a href="?action=register">S'inscrire</a></p>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "index.html.twig" %}
+{% block section %}
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-md-6">
+				<img src="./img/ {{projet.imageProjet()}}" alt="Project Image" class="img-fluid">
+			</div>
+			<div class="col-md-6">
+				<h2>{{projet.titreProjet}}</h2>
+				<p>Contexte:{{contexte.intitule}}</p>
+				<p>Categorie:{{categorie.intitule}}</p>
+
+				<p>Tags:
+					<button type="button" class="btn btn-dark">{{tags}}</button>
+				</p>
+
+				{% for collaborateur in collaborateurs %}
+					<p>Collaborateurs:{{collaborateur}}</p>
+				{% endfor %}
+
+				<p>Description:{{projet.descriptionProjet()}}</p>
+				<p>
+					<a href="{{projet.lienDemo()}}" class="btn btn-primary" target="_blank">Demo</a>
+					<a href="{{projet.lienSource()}}" class="btn btn-secondary" target="_blank">Source Code</a>
+				</p>
+			</div>
+		</div>
+
+
+		<div class="container mt-5">
+			<div class="row mt-4">
+				<div class="col-md-12">
+					<h3>Commentaires</h3>
+					{% for commentaire in commentaire %}
+						<div
+							class="mb-3">
+							{# <strong>{{commentaire.idIUT()}}</strong> #}
+							{{commentaire.commentaire()}}
+						</div>
+					{% endfor %}
+					
+					{% if acces == "oui" %}
+						<form action="index.php" method="get">
+							<div class="form-group">
+								<label for="commentaire">Ecrire votre commentaire:</label>
+								<textarea class="form-control" name="commentaire" id="commentaire" rows="3" placeholder="Ecrivez votre commentaire ici..."></textarea>
+							</div>
+							<button type="submit" name="action" value="commenter" class="btn btn-primary">Submit Comment</button>
+							<input type="hidden" name="idprojet" value="{{projet.idProjet()}}">
+							<input type="hidden" name="idIUT" value="{{membre.idIUT()}}">
+						</form>
+					{% else %}
+						<button>
+							<a href="?action=login">Se connecter/S'inscrire</a>
+						</button>
+					{% endif %}
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "menu.html.twig" %}
+{% block section %}
+	<div class="container mt-5">
+		<h2>Supprimer un Projet</h2>
+
+		<!-- Formulaire de Suppression de Projet -->
+		<form action="index.php" method="post">
+
+			<div class="form-group">
+				<label for="deleteProjectId">ID du Projet à Supprimer :</label>
+				<select class="form-control" id="deleteProjectId" name="deleteProjectId" required>
+					{% for projet in projets %}
+						<option value="{{ projet.idProjet() }}">{{ projet.titreProjet() }}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+			<button type="submit" class="btn btn-warning" name="supprimer" value="supprimer">Supprimer le Projet</button>
+		</form>
+	</div>
+{% endblock %}

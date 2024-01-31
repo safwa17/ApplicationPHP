@@ -1,0 +1,179 @@
+{% extends "menu.html.twig" %}
+
+{% block section %}
+	<div class="container fluid mt-5">
+		<div class="row">
+			<div class="col-md-6 offset-md-3">
+				<h2>Mon Espace</h2>
+				<hr>
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-8">
+								<h5 class="card-title">Informations du Membre</h5>
+								<div>
+									<p>ID IUT:
+										{{ membre.idiut }}</p>
+									<p>Nom:
+										{{ membre.nom }}</p>
+									<p>Prénom:
+										{{ membre.prenom }}</p>
+									<p>Email:
+										{{ membre.email }}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="card-header">
+		<h3>Mes projets</h3>
+		<form action="index.php" method="post">
+			<td>
+				<a href="?action=add" class="btn btn-secondary">Ajouter un projet</a>
+				<a href="?action=modif" class="btn btn-secondary">Modifier un projet</a>
+				<a href="?action=suppr" class="btn btn-secondary">Supprimer un projet</a>
+			</td>
+		</form>
+	</div>
+	<table class="table table-hover table-sm">
+		<thead>
+			<tr>
+				<th>Titre</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for projet in projet %}
+				<tr>
+					<td>{{ projet.titreProjet() }}</td>
+					<td>{{ projet.descriptionProjet() }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	{# admin gestion #}
+	{% if admin == "1" %}
+		{# gestion des contextes #}
+		<div class="container mt-5">
+			<div class="card">
+				<div class="card-header">
+					<h3>Liste des Contextes</h3>
+				</div>
+				<div class="card-body">
+					<form method="post" action="index.php" class="well">
+						<div class="mb-3">
+							<a href="?action=form_contexte" class="btn btn-primary">Ajouter Contexte</a>
+						</div>
+					</form>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Nom du Contexte</th>
+								<th>Identifiant du Contexte</th>
+								<th>Semestre du Contexte</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for contexte in contextes %}
+								<tr>
+									<td>{{ contexte.idContexte() }}</td>
+									<td>{{ contexte.intitule() }}</td>
+									<td>{{ contexte.identifiant() }}</td>
+									<td>{{ contexte.semestre() }}</td>
+
+									<form method="post" action="index.php" class="well">
+										<td>
+											<a href="?action=suppr_contexte&Id_contexte={{contexte.idContexte()}}" class="btn btn-danger">Supprimer</a>
+										</td>
+									</form>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		{# gestion des categories #}
+		<div class="container mt-5">
+			<div class="card">
+				<div class="card-header">
+					<h3>Liste des Catégories</h3>
+					{{message}}
+				</div>
+				<div class="card-body">
+					<form method="post" action="index.php" class="well">
+						<div class="mb-3">
+							<a href="?action=form_categorie" class="btn btn-primary">Ajouter Catégorie</a>
+						</div>
+					</form>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Nom de la Catégorie</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for categorie in categories %}
+								<tr>
+									<td>{{ categorie.Id_Categorie() }}</td>
+									<td>{{ categorie.intitule() }}</td>
+									<form method="post" action="index.php" class="well">
+										<td>
+											<a href="?action=suppr_categorie&Id_categorie={{categorie.Id_categorie()}}&intitule={{categorie.intitule()}}" class="btn btn-danger">Supprimer</a>
+										</td>
+									</form>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		{# gestion des utilisateurs #}
+		<div class="container mt-5">
+			<div class="card">
+				<div class="card-header">
+					<h3>Liste des Utilisateurs</h3>
+				</div>
+				<div class="card-body">
+					<form method="post" action="index.php" class="well">
+						<div class="mb-3">
+							<a href="?action=form_uti" class="btn btn-primary">Ajouter un Utilisateur</a>
+						</div>
+					</form>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Nom des Utilisateurs</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for utilisateur in utilisateurs %}
+								<tr>
+									<td>{{ utilisateur.idIUT }}</td>
+									<td>{{ utilisateur.nom }}&nbsp;{{ utilisateur.prenom }}</td>
+									<form method="post" action="index.php" class="well">
+										<td>
+											<a href="?action=suppr_uti&idIUT={{utilisateur.idIUT()}}" class="btn btn-danger">Supprimer</a>
+										</td>
+									</form>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}
